@@ -14,6 +14,7 @@
 <script src="js/awn.min.js"></script>
 <script src="js/web3.min.js"></script>
 <script src="js/wallet.js"></script>
+<script src="js/util.js"></script>
 <script src="./js/custom.yarik.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 <!--- FOR VIDEO--->

@@ -40,7 +40,7 @@
 
 
   // BASE URLS 
-  $base_url = "https://beta.jax.money/";
+  $base_url = "http://localhost/";
 
   $wjax_swap_link = $base_url."swap_wjax.html";
 

@@ -173,10 +173,10 @@ void function main() {
     web3 = new Web3(Web3.givenProvider);
     BN = (str) => (new web3.utils.BN(str));
 
-    setTimeout(real_time_update(), 500);
-    setInterval(real_time_update, 3000)
+    // setTimeout(real_time_update, 500);
+    // setInterval(real_time_update, 3000)
 
-    window.ethereum.on("accountsChanged", _accounts => {
+    ethereum.on("accountsChanged", _accounts => {
         accounts = _accounts
         if (accounts.length == 0) {
             reset_connect_button();
@@ -186,7 +186,7 @@ void function main() {
         }
     });
 
-    window.ethereum.on("networkChanged", () => {
+    ethereum.on("networkChanged", () => {
         if (web3.currentProvider.chainId != networks[active_network].chainId) {
             on_wrong_network();
             accounts = [];
@@ -215,9 +215,9 @@ function init_listners() {
         .off("input")
         .on("input", on_money_changed);
 
-    $(".amount")
-        .off("input")
-        .on("input", real_time_update);
+    // $(".amount")
+    //     .off("input")
+    //     .on("input", real_time_update);
 }
 
 function connect_wallet() {
@@ -306,46 +306,46 @@ function rebuild_token_select_2(token_names) {
 }
 
 function on_token_changed(e, token_name_2) {
-    const token = e.target.value;
-    const id = e.target.id;
-    const balance_display_id = id.replace("token_", "balance_");
-    get_balance_token(token, balance_display_id);
-    const token_name_1 = $("#token_1").val();
-    if (!token_name_2)
-        token_name_2 = $("#token_2").val();
+    // const token = e.target.value;
+    // const id = e.target.id;
+    // const balance_display_id = id.replace("token_", "balance_");
+    // get_balance_token(token, balance_display_id);
+    // const token_name_1 = $("#token_1").val();
+    // if (!token_name_2)
+    //     token_name_2 = $("#token_2").val();
 
-    // when token_1 ischanged
-    if (token_name_1 == token) {
-        rebuild_token_select_2(tokens[token].exchanges);
-        if (tokens[token].exchanges.indexOf(token_name_2) >= 0) {
-            $("#token_2").val(token_name_2);
-        } else {
-            $("#token_2")[0]["selectedIndex"] = 0;
-        }
-    }
-    get_exchange_rate();
-    check_allowance();
-    $("#money_1").trigger("input");
+    // // when token_1 ischanged
+    // if (token_name_1 == token) {
+    //     rebuild_token_select_2(tokens[token].exchanges);
+    //     if (tokens[token].exchanges.indexOf(token_name_2) >= 0) {
+    //         $("#token_2").val(token_name_2);
+    //     } else {
+    //         $("#token_2")[0]["selectedIndex"] = 0;
+    //     }
+    // }
+    // get_exchange_rate();
+    // check_allowance();
+    // $("#money_1").trigger("input");
 }
 
 function check_allowance() {
-    if ($("#token_1").length == 0) return;
-    const token = tokens[$("#token_1").val()]
-    let token_contract = new web3.eth.Contract(minABI, token.address);
-    token_contract.methods.allowance(accounts[0], contracts.jaxSwap._address).call()
-        .then(allowance_uint => {
-            let allowance = fromUint(allowance_uint, token.decimal)
-            if (allowance == 0 && token.approval) {
-                $("#btn_approve").show();
-                $("#btn_swap").attr("disabled", true);
-            } else {
-                $("#btn_approve").hide();
-                $("#btn_swap").attr("disabled", false);
-            }
-        })
-        .catch(error => {
-            console.error(error);
-        })
+    // if ($("#token_1").length == 0) return;
+    // const token = tokens[$("#token_1").val()]
+    // let token_contract = new web3.eth.Contract(minABI, token.address);
+    // token_contract.methods.allowance(accounts[0], contracts.jaxSwap._address).call()
+    //     .then(allowance_uint => {
+    //         let allowance = fromUint(allowance_uint, token.decimal)
+    //         if (allowance == 0 && token.approval) {
+    //             $("#btn_approve").show();
+    //             $("#btn_swap").attr("disabled", true);
+    //         } else {
+    //             $("#btn_approve").hide();
+    //             $("#btn_swap").attr("disabled", false);
+    //         }
+    //     })
+    //     .catch(error => {
+    //         console.error(error);
+    //     })
 }
 
 function disableButton(flag) {
@@ -353,31 +353,31 @@ function disableButton(flag) {
     $("#btn_swap").attr("disabled", flag);
 }
 
-function approve() {
-    const token_address = tokens[$("#token_1").val()].address;
-    let token_contract = new web3.eth.Contract(minABI, token_address);
-    disableButton(true);
-    notifier.async(
-        token_contract.methods.approve(contracts.jaxSwap._address, web3.utils.toWei(10 ** 15 + "")).send({ from: accounts[0] })
-        .then((flag) => {
-            disableButton(false);
-            check_allowance();
-            notifier.success("Approved");
-        })
-        .catch(error => {
-            disableButton(false);
-            if (error.code != 4001) {
-                notifier.alert(error.message);
-            }
-            console.error(error);
-        }), null, null, "Please, wait...", {
-            labels: {
-                async: "Approving..."
-            }
-        }
-    )
+// function approve() {
+//     const token_address = tokens[$("#token_1").val()].address;
+//     let token_contract = new web3.eth.Contract(minABI, token_address);
+//     disableButton(true);
+//     notifier.async(
+//         token_contract.methods.approve(contracts.jaxSwap._address, web3.utils.toWei(10 ** 15 + "")).send({ from: accounts[0] })
+//         .then((flag) => {
+//             disableButton(false);
+//             check_allowance();
+//             notifier.success("Approved");
+//         })
+//         .catch(error => {
+//             disableButton(false);
+//             if (error.code != 4001) {
+//                 notifier.alert(error.message);
+//             }
+//             console.error(error);
+//         }), null, null, "Please, wait...", {
+//             labels: {
+//                 async: "Approving..."
+//             }
+//         }
+//     )
 
-}
+// }
 
 function on_money_changed(e) {
     const value = e.target.value;
@@ -415,70 +415,70 @@ function upside_down() {
 }
 
 
-async function swap() {
-    if (accounts.length == 0) {
-        connect_wallet();
-        return;
-    }
-    const token_name_1 = $("#token_1").val();
-    const token_name_2 = $("#token_2").val();
-    let contract = new web3.eth.Contract(mainABI, contract_address);
-    const token_1 = tokens[token_name_1];
-    let amount = toUint($("#money_1").val(), token_1.decimal);
-    const balance = await get_balance_token(token_name_1, 1);
+// async function swap() {
+//     if (accounts.length == 0) {
+//         connect_wallet();
+//         return;
+//     }
+//     const token_name_1 = $("#token_1").val();
+//     const token_name_2 = $("#token_2").val();
+//     let contract = new web3.eth.Contract(mainABI, contract_address);
+//     const token_1 = tokens[token_name_1];
+//     let amount = toUint($("#money_1").val(), token_1.decimal);
+//     const balance = await get_balance_token(token_name_1, 1);
 
-    if (amount == 0) {
-        return;
-    }
+//     if (amount == 0) {
+//         return;
+//     }
 
-    if (amount / (10 ** token_1.decimal) > balance / (10 ** token_1.decimal)) {
-        notifier.alert(`Insufficient fund. Check your balance of ${token_name_1}`);
-        return;
-    }
-    switch (token_name_1) {
-        case "WJXN":
-            if (token_name_2 == "VRP") {
-                call_swap_contract(contract, "swap_wjxn_vrp", amount);
-            }
-            break;
-        case "VRP":
-            if (token_name_2 == "WJXN") {
-                call_swap_contract(contract, "swap_vrp_wjxn", amount);
-            }
-            break;
-        case "WJAX":
-            if (token_name_2 == "J-USD") {
-                call_swap_contract(contract, "swap_wjax_jusd", amount);
-            }
-            break;
-        case "J-USD":
-            if (token_name_2 == "WJAX") {
-                call_swap_contract(contract, "swap_jusd_wjax", amount);
-            } else if (token_name_2 == "BUSD") {
-                call_swap_contract(contract, "swap_jusd_busd", amount);
-            } else {
-                call_swap_contract(contract, "swap_jusd_jtoken", tokens[token_name_2].address, amount);
-            } 
-            break;
-        case "BUSD":
-            if (token_name_2 == "J-USD") {
-                call_swap_contract(contract, "swap_busd_jusd", amount);
-            } else {
-                call_swap_contract(contract, "swap_jtoken_busd", tokens[token_name_2].address, amount);
-            } 
-            break;
-        case "J-INR":
-        case "J-GBP":
-        case "J-EUR":
-            if (token_name_2 == "J-USD") {
-                call_swap_contract(contract, `swap_jtoken_jusd`, tokens[token_name_1].address, amount);
-            }
-            if (token_name_2 == "BUSD") {
-                call_swap_contract(contract, `swap_jtoken_busd`, tokens[token_name_1].address, amount);
-            }
-            break;
-    }
-}
+//     if (amount / (10 ** token_1.decimal) > balance / (10 ** token_1.decimal)) {
+//         notifier.alert(`Insufficient fund. Check your balance of ${token_name_1}`);
+//         return;
+//     }
+//     switch (token_name_1) {
+//         case "WJXN":
+//             if (token_name_2 == "VRP") {
+//                 call_swap_contract(contract, "swap_wjxn_vrp", amount);
+//             }
+//             break;
+//         case "VRP":
+//             if (token_name_2 == "WJXN") {
+//                 call_swap_contract(contract, "swap_vrp_wjxn", amount);
+//             }
+//             break;
+//         case "WJAX":
+//             if (token_name_2 == "J-USD") {
+//                 call_swap_contract(contract, "swap_wjax_jusd", amount);
+//             }
+//             break;
+//         case "J-USD":
+//             if (token_name_2 == "WJAX") {
+//                 call_swap_contract(contract, "swap_jusd_wjax", amount);
+//             } else if (token_name_2 == "BUSD") {
+//                 call_swap_contract(contract, "swap_jusd_busd", amount);
+//             } else {
+//                 call_swap_contract(contract, "swap_jusd_jtoken", tokens[token_name_2].address, amount);
+//             } 
+//             break;
+//         case "BUSD":
+//             if (token_name_2 == "J-USD") {
+//                 call_swap_contract(contract, "swap_busd_jusd", amount);
+//             } else {
+//                 call_swap_contract(contract, "swap_jtoken_busd", tokens[token_name_2].address, amount);
+//             } 
+//             break;
+//         case "J-INR":
+//         case "J-GBP":
+//         case "J-EUR":
+//             if (token_name_2 == "J-USD") {
+//                 call_swap_contract(contract, `swap_jtoken_jusd`, tokens[token_name_1].address, amount);
+//             }
+//             if (token_name_2 == "BUSD") {
+//                 call_swap_contract(contract, `swap_jtoken_busd`, tokens[token_name_1].address, amount);
+//             }
+//             break;
+//     }
+// }
 
 function call_swap_contract(contract, method, ...params) {
     notifier.async(
@@ -545,40 +545,17 @@ async function get_exchange_rate(token_name_1, token_name_2, show = true) {
     return _exchange_rate;
 }
 
-async function real_time_update() {
-    if(!web3) return;
-    if ($("#token_1").length == 0 || accounts.length == 0) {
-        let contract = new web3.eth.Contract(locked_abi, locked_token_sale_address);
-        let eth_price = await get_bnb_price();
-        eth_price = eth_price / (10 ** 8);
-        let prices = await Promise.all([
-            contract.methods.getUnlockedTokenPrice().call(),
-            contract.methods.getLockedTokenPrice(1).call(),
-            contract.methods.getLockedTokenPrice(2).call()
-        ]);
-    
-        prices.map((each, index) => {
-            $(`.price${index}`).html(Number(eth_price * web3.utils.fromWei(each)).toFixed(2));
-        })
+// async function real_time_update() {
+//     if(!web3) return;
+//     if(accounts.length == 0) return;
+//     if($("#token_1").length == 0) return;
+//     get_exchange_rate();
+//     const token_name_1 = $("#token_1").val();
+//     const token_name_2 = $("#token_2").val();
+//     get_balance_token(token_name_1, "balance_1");
+//     get_balance_token(token_name_2, "balance_2");
 
-        const amount1 = $("#amount1").val() || 0;
-        $("#approx_price1").html(Number(eth_price * web3.utils.fromWei(prices[1]) * amount1).toFixed(2));
-
-        const amount2 = $("#amount2").val() || 0;
-        $("#approx_price2").html(Number(eth_price * web3.utils.fromWei(prices[2]) * amount2).toFixed(2));
-
-        let availableTokens = await contract.methods.balanceOfToken().call();
-        $(".available_tokens").html(availableTokens);
-
-        return;
-    }
-    get_exchange_rate();
-    const token_name_1 = $("#token_1").val();
-    const token_name_2 = $("#token_2").val();
-    get_balance_token(token_name_1, "balance_1");
-    get_balance_token(token_name_2, "balance_2");
-
-}
+// }
 
 async function show_reserves() {
     const { data } = await axios.get('/api/reserves')
@@ -750,8 +727,8 @@ async function buylockedtokens(plan) {
     notifier.async(
         contract.methods.buyLockedTokens(plan, amount, referrer).send({ from: accounts[0], value })
         .then(() => {
-            real_time_update();
-            notifier.success("Transaction Completed");
+            // // real_time_update();
+            // notifier.success("Transaction Completed");
         })
         .catch(error => {
             if (error.code != 4001) {

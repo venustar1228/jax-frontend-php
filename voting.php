@@ -31,10 +31,10 @@
           <div class="text-center mb-3">
             <h4 class="text-blue">Active Votings</h4>
           </div>
-          <div id="voting_cl_wrap" class="bg-white box-shadow border-radius p-4 mb-4 voting ">
+          <div id="voting_cl_wrap" class="bg-white box-shadow border-radius p-4 mb-4 voting voting_active_wrap">
             <div class="flex-fill d-flex voting_dis_wrap">
               <div class="col-6 d-flex justify-content-start align-items-center"><p class="text-blue font80 mb-0">Governor Election</p></div>
-              <div class="col-6 d-flex justify-content-end align-items-center"><div class="btn btn-info btn-lg font80" onclick="makeActive()" >Vote</div></div>
+              <div class="col-6 d-flex justify-content-end align-items-center"><div class="btn btn-info btn-lg font80" onclick="vote()" >Vote</div></div>
             </div>
             <div class="voting_inner">
                 <h4 class="text-blue">Governor Election</h4>
@@ -42,21 +42,21 @@
                   <div class="col-12 p-0 col-md-6 justify-content-center align-items-center mx-auto pt-4">
                     <div class="p-3 p-md-5 bg-lighterblue border-radius mb-2 fill_form_vote_wrap active">
                       <h5 class="text-blue font-weight-normal pb-1 pb-md-4 text-center">Enter preferred Governor’s key </h5>
-                      <form>
+                      <div>
                         <div class="form-group mb-0" style="position: relative">
-                          <input type="text" class="form-control border-blue pt-2 pb-2" id="amount" aria-describedby="number" placeholder="">
-                          <div class="text-center mt-3"> <a href="#" class="btn btn-info btn-lg">Vote</a> </div>
+                          <input type="text" class="form-control border-blue pt-2 pb-2" id="governor" aria-describedby="number" placeholder="">
+                          <div class="text-center mt-3"> <button class="btn btn-info btn-lg" onclick="vote()">Vote</button> </div>
                         </div>
-                      </form>
+                      </div>
                     </div>
                     <div class="p-3 p-md-5 bg-lighterblue border-radius mb-2 succes_form_wrap">
                       <h5 class="text-success font-weight-normal pb-1 pb-md-4 text-center">Thank you for your vote!</h5>
-                      <form>
+                      <div>
                         <div class="form-group mb-0" style="position: relative">
                           <input type="text" class="form-control brdsuccess pt-2 pb-2" id="amount" aria-describedby="number" placeholder="f82sdsa3564sadsad4">
                           <div class="text-center mt-3"> <p class="text-blue pb-0 mb-0">Your voting is successful. get more VRP tokens here.</p> </div>
                         </div>
-                      </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -71,5 +71,7 @@
 <?php include "includes/footer.php"; ?>
 
 <?php include "includes/footerJs.php"; ?>
+
+<script src="js/vote.js"></script>
 </body>
 </html>

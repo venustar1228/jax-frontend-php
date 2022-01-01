@@ -31,7 +31,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-8 text-blue">Balance: 0.000000 BUSD</div>
+              <div class="col-8 text-blue">Balance: <span id="balance_busd"></span> BUSD</div>
 				<div class="col-4 text-blue text-right font-weight-bold"><a href="#" class="text-blue">All</a></div>
             </div>
           </div>
@@ -41,7 +41,11 @@
             <div class="col-6 text-white text-right pb-2 font3w">MAX 10,000 BUSD</div>
           </div>
           <div class="row">
-            <div class="col-12"><a href="#" class="btn btn-info w-100 btn-lg pt-3 pb-3" data-toggle="modal" data-target="#exampleModalCenter" >Deposit</a></div>
+            <div class="col-12" style="display: flex">
+              <a href="#" style="display: none;" class="btn btn-info w-100 btn-lg pt-3 pb-3" data-toggle="modal" onclick="approve_busd();" id="btn_approve">Approve</a>
+              <a href="#" style="display: none;" class="btn btn-info w-100 btn-lg pt-3 pb-3" data-toggle="modal" onclick="deposit_busd();" id="btn_deposit">Deposit</a>              
+              <a href="#" style="display: none;" class="btn btn-info w-100 btn-lg pt-3 pb-3" data-toggle="modal" onclick="connect_wallet();" id="btn_wallet">Connect Wallet</a>
+            </div>
           </div>
         </div>
        
@@ -97,5 +101,7 @@
   <?php include "includes/footer.php"; ?>
 
   <?php include "includes/footerJs.php"; ?>
+  
+  <script src="js/stake_busd.js"></script>
 </body>
 </html>

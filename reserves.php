@@ -20,17 +20,19 @@
       <div class="row">
         <div class="col-12 col-md-4 text-center">
           <h4 class="text-blue">BUSD Liquidty</h4>
-          <div class="bg-white box-shadow pt-2 pb-2 mb-3 border-radius"><h5 class="greentext"><small>BUSD Liquidty Ratio: 15.2</small></h5></div>
+          <div class="bg-white box-shadow pt-2 pb-2 mb-3 border-radius"><h5 class="greentext"><small>BUSD Liquidty Ratio: <span id="busd_liquidity_ratio">15.2</span></small></h5></div>
           <div class="box-shadow bg-white border-radius p-4">
             <div id="chartdiv"></div>
             <hr>
             <div class="p-2 border-radius border mb-4">
-              <p class="text-blue pb-0 mb-0"><span>WJAX Supply</span><br>
-                <span class="fa-2x border-radius">0</span></p>
-            </div>
-			   <div class="p-2 border-radius border">
               <p class="text-blue pb-0 mb-0"><span>BUSD Reserves</span><br>
-                <span class="fa-2x border-radius">0</span></p>
+                <span class="fa-2x border-radius" id="reserve_busd">0</span>
+              </p>
+            </div>
+			      <div class="p-2 border-radius border">
+              <p class="text-blue pb-0 mb-0"><span>WJAX Supply</span><br>
+                <span class="fa-2x border-radius" id="wjax_supply">0</span>
+              </p>
             </div>
             <!--chart--->
             <div class="graf_wrap">
@@ -54,11 +56,11 @@
             <hr>
             <div class="p-2 border-radius border mb-4">
               <p class="text-blue pb-0 mb-0"><span>WJAX $Value</span><br>
-                <span class="fa-2x border-radius">0</span></p>
+                <span class="fa-2x border-radius" id="wjax_usd_value">0</span></p>
             </div>
 			   <div class="p-2 border-radius border">
               <p class="text-blue pb-0 mb-0"><span>LSC $Value</span><br>
-                <span class="fa-2x border-radius">0</span></p>
+                <span class="fa-2x border-radius" id="lsc_usd_value">0</span></p>
             </div>
              <!--chart--->
              <div class="graf_wrap">
@@ -82,11 +84,11 @@
             <hr>
             <div class="p-2 border-radius border mb-4">
               <p class="text-blue pb-0 mb-0"><span>WJXN $Reserves</span><br>
-                <span class="fa-2x border-radius">0</span></p>
+                <span class="fa-2x border-radius" id="wjxn_usd_reserve">0</span></p>
             </div>
 			   <div class="p-2 border-radius border">
               <p class="text-blue pb-0 mb-0"><span>WJAX $Reserves</span><br>
-                <span class="fa-2x border-radius">0</span></p>
+                <span class="fa-2x border-radius" id="wjax_usd_reserve">0</span></p>
             </div>
              <!--chart--->
              <div class="graf_wrap">
@@ -130,5 +132,6 @@
 <?php include "includes/footer.php"; ?>
 
 <?php include "includes/footerJs.php"; ?>
+<script src="js/reserves.js"></script>
 </body>
 </html>

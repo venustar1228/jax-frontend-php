@@ -42,41 +42,41 @@
   // BASE URLS 
   $base_url = "http://localhost/";
 
-  $wjax_swap_link = $base_url."swap_wjax.html";
+  $wjax_swap_link = $base_url."swap_wjax.php";
 
-  $voting_link = $base_url."voting.html";
+  $voting_link = $base_url."voting.php";
 
-  $wjxn_swap_link = $base_url."swap_wjxn.html";
+  $wjxn_swap_link = $base_url."swap_wjxn.php";
 
   $home_link = $base_url;
 
-  $whitelist_link = $base_url."whitelists.html";
+  $whitelist_link = $base_url."whitelists.php";
 
-  $exchange_rates_link = $base_url."exchange_rates.html";
+  $exchange_rates_link = $base_url."exchange_rates.php";
 
-  $fees_link = $base_url."fees.html";
+  $fees_link = $base_url."fees.php";
 
-  $reserves_link = $base_url."reserves.html";
+  $reserves_link = $base_url."reserves.php";
 
-  $dex_swap_link = "swap_dex.html";
+  $dex_swap_link = "swap_dex.php";
 
-  $terms_link = $base_url."terms.html";
+  $terms_link = $base_url."terms.php";
 
-  $privacy_link = $base_url."privacy.html";
+  $privacy_link = $base_url."privacy.php";
 
-  $stake_main_page_link = $base_url."stake_main_page.html";
+  $stake_main_page_link = $base_url."stake_main_page.php";
 
-  $dashboard_link = $base_url."dashboard.html";
+  $dashboard_link = $base_url."dashboard.php";
   
-  $swap_busd_link = $base_url."swap_busd.html";
+  $swap_busd_link = $base_url."swap_busd.php";
 
-  $swap_unstake_busd_link = $base_url."unstake_busd.html";
+  $swap_unstake_busd_link = $base_url."unstake_busd.php";
 
-  $swap_unstake_vrp_link = $base_url."unstake_vrp.html";
+  $swap_unstake_vrp_link = $base_url."unstake_vrp.php";
 
-  $swap_harvest_link = $base_url."swap_harvest.html";
+  $swap_harvest_link = $base_url."swap_harvest.php";
 
-  $unstake_swap_wjxn_link = $base_url."unstake_swap_wjxn.html";
+  $unstake_swap_wjxn_link = $base_url."unstake_swap_wjxn.php";
 
 
 

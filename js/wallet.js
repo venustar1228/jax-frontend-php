@@ -98,7 +98,7 @@ void async function getContractAddresses() {
     tokens.BUSD.address = contractsInfo.busd.address;
     tokens["J-USD"].address = contractsInfo.jusd.address;
     tokens["J-INR"].address = contractsInfo.jinr.address;
-    contract_address = contractsInfo.admin.address;
+    // contract_address = contractsInfo.admin.address;
     for(let key in contractsInfo) {
         const info = contractsInfo[key];
         if(!info.abi) {
